@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import Nav from "../components/Nav";
 class Saved extends Component {
   state = {
     books: [],
@@ -48,6 +49,8 @@ class Saved extends Component {
   };
   render() {
     return (
+      <div>
+      <Nav />
       <Container fluid>
         <Row>
           {/* <Col size="md-1">
@@ -91,12 +94,20 @@ class Saved extends Component {
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                  <ListItem key={book._id} >
+                    {/* <Link to={"/books/" + book._id}> */}
+                    
                       <strong>
-                        {book.title} 
-                      </strong>
-                    </Link>
+                        <h3>{book.title} </h3>
+                        </strong>
+                        <br/>
+                        <h4><strong>Author(s): </strong>{book.authors}</h4>
+                        <br/>
+                        <strong>Summary: </strong>{book.summary}
+
+
+                     
+                    {/* </Link> */}
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                   </ListItem>
                 ))}
@@ -107,6 +118,7 @@ class Saved extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }
